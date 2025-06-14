@@ -41,7 +41,9 @@ libros = [
 
 
 
-#def registrar_nuevo_usuario(seleccionados):
+def registrar_nuevo_usuario(nombre, apellido, rut):
+    usuarios.append({"nombre: ":nombre,"apellido": apellido, "rut": rut, "libros": []})
+    print(usuarios)
 
 def validar_rut(rut):
     for persona in usuarios:
@@ -70,24 +72,38 @@ def prestar_libro(id_seleccionada):
 def devolver_libro():
     pass
 
-rut = input("Inserte rut")
-rut = rut.lower()
 
-if validar_rut(rut) == True:
-    mostrar_libros()
-    seleccionado = indice_por_rut(rut)
-    id_seleccionada = int(input())
-    prestar_libro(id_seleccionada)
-else:
-    print("Usuario no existe")
 
-'''
-(POR AGREGAR)
+
 while True:
     opcion = int(input("Seleccione una opción\n1. Buscar un usuario por su rut\n2. Registrar un nuevo usuario\nRegistrar un nuevo libro\n4. Salir\n"))
 
     if opcion == 1:
-        pass
+        rut = input("Inserte rut")
+        rut = rut.lower()
+
+        if validar_rut(rut) == True:
+            opcion_rut = int(input("Usuario validado, que quiere hacer?\n1. Pedir prestado un libro\n2. Devolver un libro\n"))
+            if opcion_rut == 1:
+                mostrar_libros()
+                seleccionado = indice_por_rut(rut)
+                id_seleccionada = int(input())
+                prestar_libro(id_seleccionada)
+            elif opcion_rut == 2:
+                pass
+            else:
+                print("Inserte una opción válida")
+        else:
+            yes_no = int(input("Usuario no existe en directorio, quiere registrarlo?\n1. Sí\n2. No\n"))
+
+            if yes_no == 1:
+                nombre = input("Indique su nombre")
+                apellido = input("Indique su apellido")
+                registrar_nuevo_usuario(nombre, apellido, rut)
+            elif yes_no == 2:
+                pass
+            else:
+                print("Inserte una opción válida")
     elif opcion == 2:
         pass
     elif opcion == 3:
@@ -98,8 +114,3 @@ while True:
     else:
         print("Inserte opción válida")
 
-        
-    for seleccionado, persona in enumerate(usuarios):
-        if usuario["rut"] == rut:
-            return seleccionado 
-'''
