@@ -19,7 +19,7 @@ usuarios = [
     {"nombre": "Camila", "apellido": "Pérez", "rut": "12182343-5", "libros": []},
     {"nombre": "Jorge", "apellido": "Muñoz", "rut": "14044461-9", "libros": []},
     {"nombre": "María", "apellido": "Rojas", "rut": "16149391-0", "libros": []},
-    {"nombre": "Diego", "apellido": "Díaz", "rut": "10407062-4", "libros": [0]},
+    {"nombre": "Diego", "apellido": "Díaz", "rut": "10407062-4", "libros": []},
     {"nombre": "Lucía", "apellido": "Soto", "rut": "19306158-3", "libros": []},
     {"nombre": "Pablo", "apellido": "Torres", "rut": "14864522-5", "libros": []},
     {"nombre": "Valentina", "apellido": "Contreras", "rut": "15592214-1", "libros": []},
@@ -39,18 +39,20 @@ libros = [
     {"id": 10, "titulo": "Pedro Páramo", "autor": "Juan Rulfo", "ISBN": "978-6073142360", "paginas": 144, "cantidad_disponible": 8}
 ]
 
-seleccionados = []
+
 
 #def registrar_nuevo_usuario(seleccionados):
-    
 
-def buscar_rut(rut):
+def validar_rut(rut):
     for persona in usuarios:
         if rut == persona["rut"]:
-            seleccionados.append(persona)
-            print(persona["nombre"])
             return True
     return False
+
+def indice_por_rut(rut):
+    for seleccionado, persona in enumerate(usuarios):
+        if rut == persona["rut"]:
+            return seleccionado
 
 def mostrar_libros():
     print("Seleccione que libro desea pedir prestado:")
@@ -61,8 +63,9 @@ def prestar_libro(id_seleccionada):
     print("Libro prestado: ", libros[id_seleccionada-1]["titulo"])
     print("Actualizando cantidad disponible...")
     libros[id_seleccionada-1]["cantidad_disponible"] -= 1
-    
-    print ("Cantidad disponible actual: ",libros[id_seleccionada-1]["cantidad_disponible"])
+    usuarios[seleccionado]["libros"].append(libros[id_seleccionada-1]["titulo"])
+    print("Cantidad disponible actual: ",libros[id_seleccionada-1]["cantidad_disponible"])
+    print(usuarios[seleccionado])
 
 def devolver_libro():
     pass
@@ -70,8 +73,9 @@ def devolver_libro():
 rut = input("Inserte rut")
 rut = rut.lower()
 
-if buscar_rut(rut) == True:
+if validar_rut(rut) == True:
     mostrar_libros()
+    seleccionado = indice_por_rut(rut)
     id_seleccionada = int(input())
     prestar_libro(id_seleccionada)
 else:
@@ -94,4 +98,8 @@ while True:
     else:
         print("Inserte opción válida")
 
+        
+    for seleccionado, persona in enumerate(usuarios):
+        if usuario["rut"] == rut:
+            return seleccionado 
 '''
