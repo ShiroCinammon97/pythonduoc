@@ -4,22 +4,13 @@ Utilizar la lista de usuarios y personas definidas a continuación.
 El programa debe mostrar un menú que permita:
 1 - Buscar un usuario por su rut.
     1.1 - Si el usuario existe mostrar un menú para:
-        1.1.1 - Realizar un préstamo de un libro, sólo si hay disponibles.
+        1.1.1 - Realizar un préstamo de un libro
         1.1.2 - Realizar la devolución de un libro
             1.1.2.1 - Si el libro no existe, permitir registrar el libro que trajo la persona.
     1.2  - Si el usuario no existe, permitir registrar al usuario.
 2 - Registrar un nuevo usuario.
 3 - Registrar un nuevo libro.
 4 - Salir
-
-Debe hacer una función para:
-1 - Buscar usuarios
-2 - Registrar un usuario
-3 - Registrar un libro
-
-Debe usar try-except para verificar todos los posibles códigos peligrosos.
-Debe usar mensajes amigables y coherentes con un programa pensado para el encargado de la 
-biblioteca. Bien escritos y redactados, puede ayudarse de Chat GPT para esto.
 '''
 
 usuarios = [
@@ -48,4 +39,59 @@ libros = [
     {"id": 10, "titulo": "Pedro Páramo", "autor": "Juan Rulfo", "ISBN": "978-6073142360", "paginas": 144, "cantidad_disponible": 8}
 ]
 
-print("Hello World")
+seleccionados = []
+
+#def registrar_nuevo_usuario(seleccionados):
+    
+
+def buscar_rut(rut):
+    for persona in usuarios:
+        if rut == persona["rut"]:
+            seleccionados.append(persona)
+            print(persona["nombre"])
+            return True
+    return False
+
+def mostrar_libros():
+    print("Seleccione que libro desea pedir prestado:")
+    for item in libros:
+        print("id", item["id"],", Título", item["titulo"],", Cantidad disponible", item["cantidad_disponible"])
+
+def prestar_libro(id_seleccionada):
+    print("Libro prestado: ", libros[id_seleccionada-1]["titulo"])
+    print("Actualizando cantidad disponible...")
+    libros[id_seleccionada-1]["cantidad_disponible"] -= 1
+    
+    print ("Cantidad disponible actual: ",libros[id_seleccionada-1]["cantidad_disponible"])
+
+def devolver_libro():
+    pass
+
+rut = input("Inserte rut")
+rut = rut.lower()
+
+if buscar_rut(rut) == True:
+    mostrar_libros()
+    id_seleccionada = int(input())
+    prestar_libro(id_seleccionada)
+else:
+    print("Usuario no existe")
+
+'''
+(POR AGREGAR)
+while True:
+    opcion = int(input("Seleccione una opción\n1. Buscar un usuario por su rut\n2. Registrar un nuevo usuario\nRegistrar un nuevo libro\n4. Salir\n"))
+
+    if opcion == 1:
+        pass
+    elif opcion == 2:
+        pass
+    elif opcion == 3:
+        pass
+    elif opcion == 4:
+        print("Adios")
+        break
+    else:
+        print("Inserte opción válida")
+
+'''
