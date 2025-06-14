@@ -39,3 +39,87 @@ libros = [
     {"id": 10, "titulo": "Pedro Páramo", "autor": "Juan Rulfo", "ISBN": "978-6073142360", "paginas": 144, "cantidad_disponible": 8}
 ]
 
+def validar_rut(rut):
+    for persona in usuarios:
+        if rut == persona["rut"]:
+            return True
+    return False
+
+def indice_por_rut(rut):
+    for seleccionado, persona in enumerate(usuarios):
+        if rut == persona["rut"]:
+            return seleccionado
+        
+def registrar_nuevo_usuario(nombre, apellido, rut):
+    usuarios.append({"nombre: ":nombre,"apellido": apellido, "rut": rut, "libros": []})
+    print("Usuario ",nombre," ",apellido," registrado exitosamente")
+
+def mostrar_libros():
+    print("Seleccione que libro desea pedir prestado:")
+    for item in libros:
+        print("id", item["id"],", Título", item["titulo"],", Cantidad disponible", item["cantidad_disponible"])
+
+def prestar_libro(id_seleccionada):
+    print("Libro prestado: ", libros[id_seleccionada-1]["titulo"])
+    print("Actualizando cantidad disponible...")
+    libros[id_seleccionada-1]["cantidad_disponible"] -= 1
+    usuarios[seleccionado]["libros"].append(libros[id_seleccionada-1]["titulo"])
+    print("Cantidad disponible actual: ",libros[id_seleccionada-1]["cantidad_disponible"])
+    print(usuarios[seleccionado])
+
+titulo_usuario_seleccionado = usuarios[seleccionado]["titulo"]
+
+def indice_por_titulo(titulo):
+    for id_titulo, libro in enumerate(libros):
+        if usuarios[seleccionado]["titulo"] == libros["titulo"]:
+            
+    for seleccionado, persona in enumerate(usuarios):
+        if rut == persona["rut"]:
+            return seleccionado
+
+'''def devolver_libro(id_seleccionada, seleccionado):
+    libros[seleccionado]["libros"].append(libros[id_seleccionada-1]["titulo"])
+    libros[id_seleccionada-1]["cantidad_disponible"] += 1'''
+
+def registrar_libro():
+    pass
+
+while True:
+    opcion = int(input("Seleccione una opción\n1. Buscar un usuario por su rut\n2. Registrar un nuevo usuario\nRegistrar un nuevo libro\n4. Salir\n"))
+    if opcion == 1:
+        rut = input("Inserte rut")
+        rut = rut.lower()
+        if validar_rut(rut) == True:
+            opcion_rut = int(input("Usuario validado, que quiere hacer?\n1. Pedir prestado un libro\n2. Devolver un libro\n"))
+            if opcion_rut == 1:
+                mostrar_libros()
+                seleccionado = indice_por_rut(rut)
+                id_seleccionada = int(input())
+                prestar_libro(id_seleccionada)
+            elif opcion_rut == 2:
+                devolver_libro()
+            else:
+                print("Inserte una opción válida")
+        else:
+            yes_no = int(input("Usuario no existe en directorio, quiere registrarlo?\n1. Sí\n2. No\n"))
+
+            if yes_no == 1:
+                nombre = input("Indique su nombre")
+                apellido = input("Indique su apellido")
+                registrar_nuevo_usuario(nombre, apellido, rut)
+            elif yes_no == 2:
+                pass
+            else:
+                print("Inserte una opción válida")
+    elif opcion == 2:
+            nombre = input("Indique su nombre")
+            apellido = input("Indique su apellido")
+            registrar_nuevo_usuario(nombre, apellido, rut)
+    elif opcion == 3:
+        devolver_libro()
+    elif opcion == 4:
+        print("Adios")
+        break
+    else:
+        print("Inserte opción válida")
+
