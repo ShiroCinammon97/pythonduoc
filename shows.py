@@ -46,4 +46,4 @@ def eliminar_artista():
     pass
 
 for id in shows:
-    print(id)
+    print(shows[id][0])
