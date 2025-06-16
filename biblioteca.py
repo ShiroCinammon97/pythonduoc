@@ -67,19 +67,13 @@ def prestar_libro(id_seleccionada):
     print("Cantidad disponible actual: ",libros[id_seleccionada-1]["cantidad_disponible"])
     print(usuarios[seleccionado])
 
-titulo_usuario_seleccionado = usuarios[seleccionado]["titulo"]
+def devolver_libro():
+    libros.append(usuarios[seleccionado]["libros"])
 
-def indice_por_titulo(titulo):
-    for id_titulo, libro in enumerate(libros):
-        if usuarios[seleccionado]["titulo"] == libros["titulo"]:
-            
-    for seleccionado, persona in enumerate(usuarios):
-        if rut == persona["rut"]:
-            return seleccionado
-
-'''def devolver_libro(id_seleccionada, seleccionado):
-    libros[seleccionado]["libros"].append(libros[id_seleccionada-1]["titulo"])
-    libros[id_seleccionada-1]["cantidad_disponible"] += 1'''
+'''def devolver_libro():
+    usuarios[seleccionado]["libros"].append(libros["cantidad_dispobile"][0])
+    usuarios[seleccionado]["libros"] =-1
+    libros["cantidad_disponible"][0] =+ 1'''
 
 def registrar_libro():
     pass
@@ -97,6 +91,7 @@ while True:
                 id_seleccionada = int(input())
                 prestar_libro(id_seleccionada)
             elif opcion_rut == 2:
+                seleccionado = indice_por_rut(rut)
                 devolver_libro()
             else:
                 print("Inserte una opción válida")
@@ -114,6 +109,7 @@ while True:
     elif opcion == 2:
             nombre = input("Indique su nombre")
             apellido = input("Indique su apellido")
+            rut = input("Inserte rut")
             registrar_nuevo_usuario(nombre, apellido, rut)
     elif opcion == 3:
         devolver_libro()
