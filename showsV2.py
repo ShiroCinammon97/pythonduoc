@@ -102,7 +102,12 @@ def eliminar_artista():
 #Sistema de login
 
 while True:
-    opcion_login = int(input("Igrese una opcion:\n1. Iniciar sesión\n2. Registrar nuevo usuario\n"))
+    try:
+        opcion_login = int(input("Igrese una opcion:\n1. Iniciar sesión\n2. Registrar nuevo usuario\n"))
+    except ValueError as error:
+        print("Error: ",error)
+        print("El valor que ingresó no es un número entero")
+        opcion_login = 0
     if opcion_login == 1:
         while True:
             username = input("Inserte nombre de usuario")
@@ -113,25 +118,27 @@ while True:
             if login == True:
                     print("Acceso concebido")
                     break
+            print("Datos ingresados incorrectos")
             contador_login += 1
+            print("Intentos restantes: ",3 - contador_login)
             if contador_login == 3:
                 break
+        break
     elif opcion_login == 2:
+        while True:
             username = input("Inserte nombre de usuario")
             for usuario in usuarios:
                 if usuario != username:
                     disponible = True
                     print("Nombre de usuario disponible")
+                    break
                 else:
                     print("Nombre de usuario no disponible, intente con otro")
-
+    
             passwd = input("Inserte contraseña")
             if verificar_passwd(passwd) != False:
                 usuarios[username] = passwd
                 print("Válido")
-            
-            
-
     else:
         print("Ingrese una opción válida")
 
