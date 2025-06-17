@@ -78,7 +78,7 @@ def verificar_passwd(passwd):
     for character in passwd:
         if character.isupper():
             upper = True
-        if character in ["x","!","+"]:
+        if character in ["*","-","+","!",".",","]:
             caracter = True
     if not upper:
         print("Contraseña requiere al menos una mayúscula")
@@ -91,7 +91,15 @@ def verificar_passwd(passwd):
         return False
 
 def artistas_por_pais(pais):
-    pass
+   por_presentar = []
+   for id in shows:
+        if pais == shows[id][1]:
+           por_presentar.append(shows[id][0])
+        if len(por_presentar) == 0:
+            print("No se registran cantantes de este país para nuestros próximos shows")
+        else:
+            for artista in por_presentar:
+                print(artista)
 
 def shows_por_mes(mes):
     pass
@@ -110,8 +118,8 @@ while True:
         opcion_login = 0
     if opcion_login == 1:
         while True:
-            username = input("Inserte nombre de usuario")
-            passwd = input("Inserte contraseña")
+            username = input("Inserte nombre de usuario\n")
+            passwd = input("Inserte contraseña\n")
             for id in usuarios:
                 if passwd == usuarios["admin"]:
                     login = True
@@ -126,16 +134,16 @@ while True:
         break
     elif opcion_login == 2:
         while True:
-            username = input("Inserte nombre de usuario")
+            username = input("Inserte nombre de usuario\n")
             for usuario in usuarios:
                 if usuario != username:
                     disponible = True
-                    print("Nombre de usuario disponible")
+                    print("Nombre de usuario disponible\n")
                     break
                 else:
                     print("Nombre de usuario no disponible, intente con otro")
     
-            passwd = input("Inserte contraseña")
+            passwd = input("Inserte contraseña\n")
             if verificar_passwd(passwd) != False:
                 usuarios[username] = passwd
                 print("Válido")
@@ -151,7 +159,8 @@ else:
         opcion = int(input("Igrese una opcion:\n1. Mostrar artistas por país\n2. Porcentaje de shows en un mes\n3. Eliminar artista por nombre\n4. Salir\n"))
 
         if opcion == 1:
-            pass
+            pais = input("Ingrese un país\n")
+            artistas_por_pais(pais)
         elif opcion == 2:
             pass
         elif opcion == 3:
