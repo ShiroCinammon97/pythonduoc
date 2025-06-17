@@ -48,14 +48,20 @@ shows = {
 
 def verificar_passwd (texto):
     upper = False
+    caracter = False
     if len(texto) < 9:
         print("Contraseña debe contener 9 o más caracteres")
         return False
-    for letra in texto:
-        if letra.isupper():
+    for caracter in texto:
+        if caracter.isupper():
             upper = True
+        if caracter in ["*","-","+","!",".",","]:
+            caracter = True
     if not upper:
         print("La contraseña debe contener almenos una mayúscula")
+        return False
+    if not caracter:
+        print("La contraseña debe contener almenos un caracter especial")
         return False
     
 
@@ -78,19 +84,37 @@ print("Bienvenido al sistema conciertos")
 
 while True:
     opcion_login = int(input("Inserte opción:1.Login2.Registro"))
-    usuario = input("Inserte nombre de usuario")
-    contrasena = input("Inserte contraseña de usuario")
-    for usuario in usuarios:
-        if usuarios[usuario] == contrasena:
-            login = True
+    if opcion_login == 1:
+        while True:
+            usuario = input("Inserte nombre de usuario")
+            contrasena = input("Inserte contraseña de usuario")
+            for usuario in usuarios:
+                if usuarios[usuario] == contrasena:
+                    login = True
+                else:
+                    print("Credenciales incorrectas")
+            contador_login += 1
+            if login == True:
+                print("Bienvenido")
+                break
+            if contador_login == 3:
+                break
+        break
+    elif opcion_login == 2:
+        usuario = input("Registrar nombre de usuario")
+        #for usuario in usuarios:
+        #    disponible = False
+        contrasena = input("Registrar contraseña de usuario")
+        verificar_passwd(contrasena)
+        if verificar_passwd(contrasena):
+            print("Correcto")
+            usuarios[usuario] = contrasena
         else:
-            print("Credenciales incorrectas")
-    contador_login += 1
-    if login == True:
-        print("Bienvenido")
-        break
-    if contador_login == 3:
-        break
+            print("Incorrecto")
+    else:
+        print("Inserte opción válida")
+
+    
     
 
 
