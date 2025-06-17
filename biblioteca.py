@@ -59,27 +59,20 @@ def mostrar_libros():
     for item in libros:
         print("id", item["id"],", Título", item["titulo"],", Cantidad disponible", item["cantidad_disponible"])
 
-def prestar_libro(id_seleccionada):
-    print("Libro prestado: ", libros[id_seleccionada-1]["titulo"])
+def prestar_libro(id_libro_seleccionado):
+    print("Libro prestado: ", libros[id_libro_seleccionado-1]["titulo"])
     print("Actualizando cantidad disponible...")
-    libros[id_seleccionada-1]["cantidad_disponible"] -= 1
-    usuarios[seleccionado]["libros"].append(libros[id_seleccionada-1]["titulo"])
-    print("Cantidad disponible actual: ",libros[id_seleccionada-1]["cantidad_disponible"])
-    print(usuarios[seleccionado])
+    libros[id_libro_seleccionado-1]["cantidad_disponible"] -= 1
+    usuario_seleccionado["libros"].append(libros[id_libro_seleccionado-1]["titulo"])
+    print("Cantidad disponible actual: ",libros[id_libro_seleccionado-1]["cantidad_disponible"])
+    print(usuario_seleccionado)
 
-titulo_usuario_seleccionado = usuarios[seleccionado]["titulo"]
-
-def indice_por_titulo(titulo):
-    for id_titulo, libro in enumerate(libros):
-        if usuarios[seleccionado]["titulo"] == libros["titulo"]:
-            
-    for seleccionado, persona in enumerate(usuarios):
-        if rut == persona["rut"]:
-            return seleccionado
-
-'''def devolver_libro(id_seleccionada, seleccionado):
-    libros[seleccionado]["libros"].append(libros[id_seleccionada-1]["titulo"])
-    libros[id_seleccionada-1]["cantidad_disponible"] += 1'''
+def devolver_libro(libro_usuario):
+    for libro in libros:
+        if libro["titulo"] != libro_usuario:        #Por alguna razón mi código funciona al revés, Preguntar al profe
+            libro["cantidad_disponible"] += 1
+            print("Libro: ",libro_usuario ," devuelto correctamente")
+            return
 
 def registrar_libro():
     pass
@@ -93,11 +86,13 @@ while True:
             opcion_rut = int(input("Usuario validado, que quiere hacer?\n1. Pedir prestado un libro\n2. Devolver un libro\n"))
             if opcion_rut == 1:
                 mostrar_libros()
-                seleccionado = indice_por_rut(rut)
-                id_seleccionada = int(input())
-                prestar_libro(id_seleccionada)
+                id_seleccionado = indice_por_rut(rut)
+                usuario_seleccionado = usuarios[id_seleccionado]
+                id_libro_seleccionado = int(input())
+                prestar_libro(id_libro_seleccionado)
             elif opcion_rut == 2:
-                devolver_libro()
+                libro_usuario = usuario_seleccionado["libros"]
+                devolver_libro(libro_usuario)
             else:
                 print("Inserte una opción válida")
         else:
@@ -108,15 +103,16 @@ while True:
                 apellido = input("Indique su apellido")
                 registrar_nuevo_usuario(nombre, apellido, rut)
             elif yes_no == 2:
-                pass
+                print("Regresando...")
             else:
                 print("Inserte una opción válida")
     elif opcion == 2:
             nombre = input("Indique su nombre")
             apellido = input("Indique su apellido")
+            rut = input("Inserte rut")
             registrar_nuevo_usuario(nombre, apellido, rut)
     elif opcion == 3:
-        devolver_libro()
+        print("Registrando nuevo libro...") #PLACEHOLDER
     elif opcion == 4:
         print("Adios")
         break
