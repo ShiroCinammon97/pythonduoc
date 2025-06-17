@@ -74,10 +74,9 @@ def verificar_passwd(passwd):
     upper = False
     caracter = False
 
-    if passwd(len) <= 9:
+    if len(passwd) <= 9:
         return False
     for character in passwd:
-
         if character.isupper():
             upper = True
         if character == ["x","!","+"]:
@@ -115,10 +114,15 @@ while True:
                 break
     elif opcion_login == 2:
             username = input("Inserte nombre de usuario")
+            for usuario in usuarios:
+                if usuario != username:
+                    disponible = True
+                    print("Nombre de usuario disponible")
+
             passwd = input("Inserte contraseña")
-            usuarios[username]
-            if verificar_passwd(passwd) == True:
+            if verificar_passwd(passwd):
                 usuarios[username] = passwd
+                print("Válido")
             else:
                 print("Inválido")
             
@@ -126,8 +130,6 @@ while True:
 
     else:
         print("Ingrese una opción válida")
-
-    break
 
 #Menu principal
 if login == False:
