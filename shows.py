@@ -78,8 +78,7 @@ def artistas_por_pais(pais):
                 print(artista)
 
 def shows_por_mes(mes):
-    pass
-'''    largo = 0
+    largo = 0
     show_mes = 0
     for id in shows:
         fecha = shows[id][1].split("-")
@@ -88,7 +87,6 @@ def shows_por_mes(mes):
                 show_mes += 1
         else:
             if int(fecha)            
-'''
 
 def eliminar_artista():
     pass
