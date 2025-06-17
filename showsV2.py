@@ -74,16 +74,20 @@ def verificar_passwd(passwd):
     upper = False
     caracter = False
 
-    if len(passwd) <= 9:
-        return False
+
     for character in passwd:
         if character.isupper():
             upper = True
-        if character == ["x","!","+"]:
+        if character in ["x","!","+"]:
             caracter = True
     if not upper:
+        print("Contraseña requiere al menos una mayúscula")
         return False
     if not caracter:
+        print("Contraseña requiere al menos un símbolo especial")
+        return False
+    if len(passwd) < 9:
+        print("Contraseña debe contener más de 9 caracteres")
         return False
 
 def artistas_por_pais(pais):
@@ -118,13 +122,13 @@ while True:
                 if usuario != username:
                     disponible = True
                     print("Nombre de usuario disponible")
+                else:
+                    print("Nombre de usuario no disponible, intente con otro")
 
             passwd = input("Inserte contraseña")
-            if verificar_passwd(passwd):
+            if verificar_passwd(passwd) != False:
                 usuarios[username] = passwd
                 print("Válido")
-            else:
-                print("Inválido")
             
             
 
