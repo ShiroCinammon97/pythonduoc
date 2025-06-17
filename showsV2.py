@@ -102,10 +102,12 @@ def artistas_por_pais(pais):
                 print(artista)
 
 def shows_por_mes(mes):
-    pass
+    '''mes.split(-)'''
 
-def eliminar_artista():
-    pass
+def eliminar_artista(nombre_artista):
+    for id in shows:
+        if nombre_artista == shows[id][0]:
+            del shows[id]
 
 #Sistema de login
 
@@ -162,11 +164,17 @@ else:
             pais = input("Ingrese un país\n")
             artistas_por_pais(pais)
         elif opcion == 2:
-            pass
+            mes = input("Ingrese un mes de 1 a 12\n")
+            if mes >= 1 and mes <= 12:
+                shows_por_mes(mes)
+            else:
+                print("Valor invalido")
         elif opcion == 3:
-            pass
+            nombre_artista = input("Inserte nombre de artista")
+            eliminar_artista(nombre_artista)
+            print(shows)
         elif opcion == 4:
-            print("Adios")
+            print("Programa cerrado.")
             break
         else:
             print("Ingrese una opción válida")
