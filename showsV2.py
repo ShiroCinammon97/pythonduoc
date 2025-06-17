@@ -105,9 +105,11 @@ def shows_por_mes(mes):
     '''mes.split(-)'''
 
 def eliminar_artista(nombre_artista):
-    for id in shows:
-        if nombre_artista == shows[id][0]:
-            del shows[id]
+
+    por_eliminar = [artista for artista, nombre in shows.items() if nombre == nombre_artista]
+
+    for artista in por_eliminar:
+        del artista[nombre_artista]
 
 #Sistema de login
 
