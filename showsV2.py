@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 '''
 Inicio del sistema: Registro o Inicio de sesión
 
@@ -54,8 +53,6 @@ Funcionalidades
 - Finaliza el programa con el mensaje: "Programa cerrado."
 '''
 
-=======
->>>>>>> main
 usuarios = {"admin": "Admin*2025"}
 
 shows = {
@@ -181,4 +178,4 @@ else:
             break
         else:
             print("Ingrese una opción válida")
-}
+
