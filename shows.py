@@ -31,7 +31,7 @@ Funcionalidades
 '''
 login = False
 contador_login = 0
-disponible = False
+disponible = True
 
 usuarios = {"admin": "Admin*2025"}
 
@@ -49,7 +49,7 @@ shows = {
 
 def verificar_passwd (texto):
     upper = False
-    caracter = False
+    char = False
     if len(texto) < 9:
         print("Contraseña debe contener 9 o más caracteres")
         return False
@@ -57,11 +57,11 @@ def verificar_passwd (texto):
         if caracter.isupper():
             upper = True
         if caracter in ["*","-","+","!",".",","]:
-            caracter = True
+            char = True
     if not upper:
         print("La contraseña debe contener almenos una mayúscula")
         return False
-    if not caracter:
+    if not char:
         print("La contraseña debe contener almenos un caracter especial")
         return False
     
@@ -77,8 +77,17 @@ def artistas_por_pais(pais):
             for artista in se_presentan:
                 print(artista)
 
-def shows_por_mes():
-    pass
+def shows_por_mes(mes):
+    largo = 0
+    show_mes = 0
+    for id in shows:
+        fecha = shows[id][1].split("-")
+        if int(fecha[1][0]) == 0:
+            int(fecha[1][1]) == mes:
+                show_mes += 1
+        else:
+            if int(fecha)            
+
 
 def eliminar_artista():
     pass
@@ -127,10 +136,6 @@ while True:
     else:
         print("Inserte opción válida")
 
-    
-    
-
-
 if login == False:
     print("Cuenta bloqueada")
 else:
@@ -140,7 +145,11 @@ else:
             pais = input("Inserte un país")
             artistas_por_pais(pais)
         elif opcion == 2:
-            shows_por_mes()
+            mes = int(input("Ingrese un mes (1 a 12):"))
+            if mes >= 1 and mes <= 12:
+                shows_por_mes(mes)
+            else:
+                print("Valor invalido")
         elif opcion == 3:
             eliminar_artista()
         elif opcion == 4:
