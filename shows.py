@@ -31,6 +31,7 @@ Funcionalidades
 '''
 login = False
 contador_login = 0
+disponible = False
 
 usuarios = {"admin": "Admin*2025"}
 
@@ -66,9 +67,15 @@ def verificar_passwd (texto):
     
 
 def artistas_por_pais(pais):
-#    for evento in shows:
-    pass
-        
+    se_presentan = []
+    for id in shows:
+        if pais == shows[id][1]:
+            se_presentan.append(shows[id][0])
+        if len(se_presentan) == 0:
+            print("No se presentan artistas de ese país")
+        else:
+            for artista in se_presentan:
+                print(artista)
 
 def shows_por_mes():
     pass
@@ -101,9 +108,15 @@ while True:
                 break
         break
     elif opcion_login == 2:
-        usuario = input("Registrar nombre de usuario")
-        #for usuario in usuarios:
-        #    disponible = False
+        while True:
+            usuario = input("Registrar nombre de usuario")
+            for usuario in usuarios:
+                disponible = False
+            if disponible == False:
+                print("Nombre de usuario no disponible")
+            else:
+                print("Nombre de usuario disponible")
+                break
         contrasena = input("Registrar contraseña de usuario")
         verificar_passwd(contrasena)
         if verificar_passwd(contrasena):
@@ -124,7 +137,8 @@ else:
     while True:
         opcion = int(input("Ingrese opción\n1. Mostrar artistas por país\n2. Porcentaje de shows en un mes\n3. Eliminar artista por nombre\n4. Salir\n"))
         if opcion == 1:
-            artistas_por_pais()
+            pais = input("Inserte un país")
+            artistas_por_pais(pais)
         elif opcion == 2:
             shows_por_mes()
         elif opcion == 3:
