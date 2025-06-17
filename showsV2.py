@@ -71,7 +71,21 @@ login = False
 contador_login = 0
 
 def verificar_passwd(passwd):
-    pass
+    upper = False
+    caracter = False
+
+    if passwd(len) <= 9:
+        return False
+    for character in passwd:
+
+        if character.isupper():
+            upper = True
+        if character == ["x","!","+"]:
+            caracter = True
+    if not upper:
+        return False
+    if not caracter:
+        return False
 
 def artistas_por_pais(pais):
     pass
@@ -91,28 +105,46 @@ while True:
             username = input("Inserte nombre de usuario")
             passwd = input("Inserte contraseña")
             for id in usuarios:
-                if passwd == usuarios["admin"]
+                if passwd == usuarios["admin"]:
+                    login = True
+            if login == True:
+                    print("Acceso concebido")
+                    break
+            contador_login += 1
+            if contador_login == 3:
+                break
     elif opcion_login == 2:
-        pass
+            username = input("Inserte nombre de usuario")
+            passwd = input("Inserte contraseña")
+            usuarios[username]
+            if verificar_passwd(passwd) == True:
+                usuarios[username] = passwd
+            else:
+                print("Inválido")
+            
+            
+
     else:
         print("Ingrese una opción válida")
 
     break
 
 #Menu principal
+if login == False:
+    print("Máximo de intentos de acceso, vuelva a intentarlo en 30 minutos")
+else:
+    print("*** SISTEMA DE SHOWS EN VIVO ***")
+    while True:
+        opcion = int(input("Igrese una opcion:\n1. Mostrar artistas por país\n2. Porcentaje de shows en un mes\n3. Eliminar artista por nombre\n4. Salir\n"))
 
-print("*** SISTEMA DE SHOWS EN VIVO ***")
-while True:
-    opcion = int(input("Igrese una opcion:\n1. Mostrar artistas por país\n2. Porcentaje de shows en un mes\n3. Eliminar artista por nombre\n4. Salir\n"))
-
-    if opcion == 1:
-        pass
-    elif opcion == 2:
-        pass
-    elif opcion == 3:
-        pass
-    elif opcion == 4:
-        print("Adios")
-        break
-    else:
-        print("Ingrese una opción válida")
+        if opcion == 1:
+            pass
+        elif opcion == 2:
+            pass
+        elif opcion == 3:
+            pass
+        elif opcion == 4:
+            print("Adios")
+            break
+        else:
+            print("Ingrese una opción válida")
