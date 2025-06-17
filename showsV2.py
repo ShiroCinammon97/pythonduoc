@@ -67,4 +67,52 @@ shows = {
     "A009": ["The Weeknd", "Canadá", "30-06-2025"]
 } 
 
-print(shows)
+login = False
+contador_login = 0
+
+def verificar_passwd(passwd):
+    pass
+
+def artistas_por_pais(pais):
+    pass
+
+def shows_por_mes(mes):
+    pass
+
+def eliminar_artista():
+    pass
+
+#Sistema de login
+
+while True:
+    opcion_login = int(input("Igrese una opcion:\n1. Iniciar sesión\n2. Registrar nuevo usuario\n"))
+    if opcion_login == 1:
+        while True:
+            username = input("Inserte nombre de usuario")
+            passwd = input("Inserte contraseña")
+            for id in usuarios:
+                if passwd == usuarios["admin"]
+    elif opcion_login == 2:
+        pass
+    else:
+        print("Ingrese una opción válida")
+
+    break
+
+#Menu principal
+
+print("*** SISTEMA DE SHOWS EN VIVO ***")
+while True:
+    opcion = int(input("Igrese una opcion:\n1. Mostrar artistas por país\n2. Porcentaje de shows en un mes\n3. Eliminar artista por nombre\n4. Salir\n"))
+
+    if opcion == 1:
+        pass
+    elif opcion == 2:
+        pass
+    elif opcion == 3:
+        pass
+    elif opcion == 4:
+        print("Adios")
+        break
+    else:
+        print("Ingrese una opción válida")
