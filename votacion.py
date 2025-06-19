@@ -31,6 +31,7 @@ No uses tuplas, matrices (listas anidadas), ni números primos.
 Debes usar listas, diccionarios, bucles for, y trabajar con índices.
 '''
 votos = []
+total_votos = []
 
 def agregar_votos(nombre_estudiante):
     voto_por_estudiante = {}
@@ -56,11 +57,29 @@ def agregar_votos(nombre_estudiante):
     votos.append(voto_por_estudiante)
     
     
-    
-'''
-def contar_votos():
-    pass
 
+def contar_votos(votos):
+    
+    contador_playa = 0
+    contador_montana = 0
+    contador_campo = 0
+
+    for voto in votos.value[1]:
+        cantidad_votos = {}
+        if voto == "Playa":
+            contador_playa += 1
+        elif voto == "Montaña":
+            contador_montana += 1
+        else:
+            contador_campo += 1
+        cantidad_votos = {"Playa":contador_playa,"Montaña":contador_montana,"Campo":contador_campo}
+    
+
+    total_votos.append(cantidad_votos)
+        
+
+
+'''
 def mostrar_votos():
     pass
 '''
@@ -70,7 +89,7 @@ for estudiante in range(3):
     nombre_estudiante = input("Inserte nombre del estudiante")
     agregar_votos(nombre_estudiante)
     
-    
+contar_votos(votos)
     
 print(votos)
-
+print(total_votos)
