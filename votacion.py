@@ -64,11 +64,11 @@ def contar_votos(votos):
     contador_montana = 0
     contador_campo = 0
 
-    for voto in votos.value[1]:
+    for values in votos[1].values():
         cantidad_votos = {}
-        if voto == "Playa":
+        if values == "Playa":
             contador_playa += 1
-        elif voto == "Montaña":
+        elif values == "Montaña":
             contador_montana += 1
         else:
             contador_campo += 1
