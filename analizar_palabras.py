@@ -9,9 +9,6 @@ un "mensaje" (texto del mensaje)
 ✏️ Tarea:
 Crea una función palabras_unicas_por_usuario(mensajes) que reciba una lista de diccionarios como este:
 
-python
-Copy
-Edit
 
 La función debe devolver un diccionario donde cada clave sea un usuario, y su valor sea un conjunto de palabras únicas que ese usuario ha escrito en todos sus mensajes.
 
