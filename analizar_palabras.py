@@ -32,27 +32,18 @@ def palabras_unicas_por_usuario(mensajes):
     mensajes_luis = []
 
     for clave in mensajes:
-        if clave["usuario"] == "Ana":
-            frase_ana = clave["mensaje"].split(" ")
-            #mensajes_ana.append(clave["mensaje"])
-        if clave["usuario"] == "Luis":
-            frase_luis = clave["mensaje"].split(" ")
-            #mensajes_luis.append(clave["mensaje"])
-    
-    for clave in frase_ana:
-        if clave not in mensajes_ana:
-            mensajes_ana.append(clave)
+        usuario = clave["usuario"]
+        frase = clave["mensaje"].split(" ")
 
-    for clave in frase_luis:
-        if clave not in mensajes_luis:
-            mensajes_luis.append(clave)
+        # Inicializar la lista si el usuario no está aún
+        if usuario not in mensajes_por_usuario:
+            mensajes_por_usuario[usuario] = []
 
-    for clave in mensajes:
-        if clave["usuario"] not in mensajes_por_usuario:
-            if clave["usuario"] == "Ana":
-                mensajes_por_usuario["Ana"] = mensajes_ana
-            if clave["usuario"] == "Luis":
-                mensajes_por_usuario["Luis"] = mensajes_luis
+        # Agregar palabras si no están repetidas
+        for palabra in frase:
+            if palabra not in mensajes_por_usuario[usuario]:
+                mensajes_por_usuario[usuario].append(palabra)
+
     print(mensajes_por_usuario)
 
 palabras_unicas_por_usuario(mensajes)
