@@ -24,22 +24,47 @@ Si quieres seguir escalando, podrías implementar validación para evitar contac
 lista = []
 
 def agregar_contacto(lista):
-    contacto = {}
+
+    solo_numeros = False
     nombre = input("Inserte un nombre\n")
-    telefono = input("Inserte un número telefónico")
-    email = input("Inserte un email")
+    while True:
+        telefono = input("Inserte un número telefónico\n")
+        for caracter in telefono:
+            if caracter.isnumeric():
+                solo_numeros = True
+            else:
+                solo_numeros = False
+        if len(telefono) >= 9 and solo_numeros == True:
+            for numero in lista:
+                if telefono == contacto["telefono"]:
+                    print("Número teléfonico ya registrado")
+                else:
+                    break
+            break
+        else:
+            print("Inserte un numero telefónico válido")
+    email = input("Inserte un email\n")
+    
     contacto = {"nombre":nombre,"teléfono": telefono,"e-mail":email}
     lista.append(contacto)
 
+
 def ver_contactos(lista):
-    for contacto in lista:
-        print(contacto["nombre"])
+    if len(lista) == 0:
+        print("No hay contactos registrados, por favor agregue uno.")
+    else:
+        print(lista)
 
 def buscar_contacto(lista):
-    nombre_a_buscar = input("Inserte nombre de contacto que busca")
-    for contacto in lista:
-        if nombre_a_buscar == contacto["nombre"]:
-            print(contacto)
+    nombre_a_buscar = input("Inserte nombre de contacto que busca\n")
+    if len(lista) == 0:
+        print("No hay contactos registrados, por favor agregue uno.")
+    else:
+        for contacto in lista:
+            if nombre_a_buscar == contacto["nombre"]:
+                print(contacto)
+            else:
+                print("Contacto buscado no encontrado")
 
 while True:
     try:
@@ -50,6 +75,7 @@ while True:
         opcion = 999
     if opcion == 1:
         agregar_contacto(lista)
+        print(lista)
     elif opcion == 2:
         ver_contactos(lista)
     elif opcion == 3:
