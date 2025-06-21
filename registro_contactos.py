@@ -23,26 +23,37 @@ Si quieres seguir escalando, podrías implementar validación para evitar contac
 
 lista = []
 
-def agregar_contacto(lista):
+def validar_numero(telefono,lista):
+    numeric = False
+    nuevo = False
+    if len(telefono) < 9:
+        print("Número de teléfono inválido")
+        return False
+    for caracter in telefono:
+        if caracter.isnumeric():
+            numeric = True
+        else:
+            print("Número de teléfono inválido")
+            return False
+    for numero in lista:
+        if telefono == numero["teléfono"]:
+            print("Número teléfonico ya registrado")
+            return False
+        else:
+            nuevo = True
 
+    if numeric == True and nuevo ==True:
+        return True
+
+def agregar_contacto(lista):
     solo_numeros = False
     nombre = input("Inserte un nombre\n")
     while True:
         telefono = input("Inserte un número telefónico\n")
-        for caracter in telefono:
-            if caracter.isnumeric():
-                solo_numeros = True
-            else:
-                solo_numeros = False
-        if len(telefono) >= 9 and solo_numeros == True:
-            for numero in lista:
-                if telefono == contacto["telefono"]:
-                    print("Número teléfonico ya registrado")
-                else:
-                    break
-            break
+        if validar_numero(telefono,lista) == False:
+            print("Vuelva a intentar")
         else:
-            print("Inserte un numero telefónico válido")
+            break
     email = input("Inserte un email\n")
     
     contacto = {"nombre":nombre,"teléfono": telefono,"e-mail":email}
