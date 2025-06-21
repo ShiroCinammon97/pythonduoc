@@ -17,16 +17,30 @@ Usa funciones para mantener el código organizado:
 agregar_contacto(lista)
 ver_contactos(lista)
 buscar_contacto(lista)
+
+Si quieres seguir escalando, podrías implementar validación para evitar contactos duplicados (mismo nombre), o permitir borrar uno.
 '''
 
 lista = []
 
 def agregar_contacto(lista):
-    pass
+    contacto = {}
+    nombre = input("Inserte un nombre\n")
+    telefono = input("Inserte un número telefónico")
+    email = input("Inserte un email")
+    contacto = {"nombre":nombre,"teléfono": telefono,"e-mail":email}
+    lista.append(contacto)
+
 def ver_contactos(lista):
-    pass
+    for contacto in lista:
+        print(contacto["nombre"])
+
 def buscar_contacto(lista):
-    pass
+    nombre_a_buscar = input("Inserte nombre de contacto que busca")
+    for contacto in lista:
+        if nombre_a_buscar == contacto["nombre"]:
+            print(contacto)
+
 while True:
     try:
         opcion = int(input("Ingrese una opción:\n1. Agregar un nuevo contacto\n2. Ver todos los contactos\n3. Buscar por nombre\n4. Salir del programa\n"))
