@@ -44,6 +44,20 @@ def verificar_codigo(codigo):
 def agregar_producto(nombre,codigo,categoria):
     productos.append({"Nombre":nombre,"Código":codigo,"Categoría":categoria})
 
+
+def mostrar_por_categoria(categoria,productos):
+    categorias_individuales = {}
+
+    for producto in productos:
+        categoria = producto["Categoría"]
+        if categoria in categorias_individuales:
+            categorias_individuales[categoria] += 1
+        else:
+            categorias_individuales[categoria] = 1
+    #for categoria, cantidad in categorias_individuales.items():
+    print(categorias_individuales)
+
+
 while True:
     try:
         opcion = int(input("Inserte una opcion:\n1. Agregar Producto\n2. Ver Productos por categoría\n3. Salir\n"))
@@ -60,7 +74,7 @@ while True:
         categoria = input("Inserte el categoría del producto\n")
         agregar_producto(nombre,codigo,categoria)
     elif opcion == 2:
-        pass
+        mostrar_por_categoria(categoria,productos)
     elif opcion == 3:
         print("Adios")
         break
