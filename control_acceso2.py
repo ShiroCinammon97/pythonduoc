@@ -16,16 +16,19 @@ Al tercer intento fallido, bloquear al usuario.
 
 Si la clave es correcta y el usuario no está bloqueado, dar acceso y reiniciar los intentos.
 '''
+intentos = 0
+bloqueado = False
 
 usuarios = [
-    {"usuario": "ana", "clave": "1234", "intentos": 0, "bloqueado": False},
-    {"usuario": "luis", "clave": "luispass", "intentos": 0, "bloqueado": False},
+    {"usuario": "ana", "clave": "1234"},
+    {"usuario": "luis", "clave": "luispass"}
 ]
 
 def verificar_usuario(nombre_usuario,passwd):
-    if nombre_usuario == usuarios["usuario"]:
-        if passwd == usuarios["Contraseña"]:
-            return True
+    for usuario in usuarios:
+        if nombre_usuario == usuario["usuario"]:
+            if passwd == usuario["clave"]:
+                return True
 
 while True:
     nombre_usuario = input("Inserte el nombre de usuario\n")
