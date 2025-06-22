@@ -12,7 +12,20 @@ Detectar duplicados por nombre o por correo.
 Mostrar un mensaje si se detecta duplicado.
 
 El programa termina cuando se ingresa "FIN" como nombre.
-
-
 '''
+ 
+def validar_correo(correo):
+    if "@gmail.com" not in correo and "@outlook.com" not in correo:
+        print("Ingrese un correo válido")
+        return False
+    else:
+        print(correo)
+        return True
 
+
+
+nombre = input("Ingrese el nombre")
+while True:
+    correo = input("Ingrese el correo")
+    if validar_correo(correo) == True:
+        break
