@@ -28,8 +28,10 @@ def verificar_registro(persona,registro,nombre,correo):
     if len(registro) == 0:
         return True
     for persona in registro:
-        if persona["Nombre"] == nombre:
-            print("Persona ya registrada")
+        if persona["Nombre"] == nombre or persona["E-mail"] == correo:
+            print("Nombre: ", nombre)
+            print("E-mail: ",correo)
+            print("Error: nombre duplicado")
             return False
         else:
             return True
@@ -38,10 +40,11 @@ def registrar(registro,nombre,correo):
     persona = {}
     if verificar_registro(persona,registro,nombre,correo) == True:
         persona = {"Nombre": nombre, "E-mail":correo}
-        print(persona)
         registro.append(persona)
-        print(registro)
-
+        print("Nombre: ", nombre)
+        print("E-mail: ",correo)
+        print("Registrado")
+        #print(registro)
 
 while True:
     nombre = input("Ingrese el nombre")
