@@ -30,16 +30,32 @@ pedidos = [
 
 def corregir(pedidos):
     pedido = input("Que pedido desea corregir?\n")
+    for item in pedidos:
+        if pedido == item["producto"]:
+            pedido_seleccionado = item
+        else:
+            print("Pedido no encontrado")
+            return False
     try:
         campo = int(input("Qué campo desea modificar?\n1. cliente\n2. producto\n3. cantidad\n"))
     except ValueError as error:
         print("Error: ",error)
         print("Se esperaba un número entero")
         campo = 0
+
     nuevo_valor = input("Ingrese el nuevo valor que reemplazará al anterior\n")
     
-    while True:
-        if corregir(pedidos):
-            break
-        else:
-            print("Intente nuevamente")
+    if campo == 1:
+        pedidos["cliente"] = nuevo_valor
+    elif campo == 2:
+        pedidos["producto"] = nuevo_valor
+    elif campo == 3:
+        pedidos["cantidad"] = int(nuevo_valor)
+    elif campo == 0:
+        print("Inserte un número entero")
+    else:
+        print("Inserte un número válido")
+    
+    print(pedidos)
+
+corregir(pedidos)
