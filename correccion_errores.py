@@ -28,14 +28,18 @@ pedidos = [
     {"cliente": "Luis", "producto": "mouse", "cantidad": 1}
 ]
 
-def corregir(pedidos):
-    pedido = input("Que pedido desea corregir?\n")
+def buscar_producto(pedidos,pedido):
     for item in pedidos:
         if pedido == item["producto"]:
-            pedido_seleccionado = item
+            return True
         else:
             print("Pedido no encontrado")
             return False
+
+def corregir(pedidos):
+    pedido = input("Que pedido desea corregir?\n")
+    if buscar_producto(pedidos,pedido):
+        print("ok")
     try:
         campo = int(input("Qué campo desea modificar?\n1. cliente\n2. producto\n3. cantidad\n"))
     except ValueError as error:
