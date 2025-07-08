@@ -27,7 +27,7 @@ amigable con el usuario, entregando mensajes que entreguen información fácil d
 describa los procesos que el sistema está realizando, así también, como entregar resultados de una
 manera intuitiva de entender.
 '''
-
+from random import randint
 pasajes_comprados = {}
 
 vuelos_chile = {
@@ -95,13 +95,13 @@ info_vuelos = {
     "VALA": [60000, 38, ['3A', '3B', '3C', '3J', '3K', '3L', '4A', '4B', '4C', '4D', '4E', '4F', '4J', '4K', '4L', '5A', '5B', '5C', '5D', '5E', '5F', '5J', '5K', '5L', '6A', '6B', '6C', '6D', '6E', '6F', '6J', '6K', '6L', '7A', '7B', '7C', '7D', '7E']],
     "PUVA": [94000, 14, ['3A', '3B', '3C', '3J', '3K', '3L', '4A', '4B', '4C', '4D', '4E', '4F', '4J', '4K']],
 }
-
+#Opcion1###########################################################################################################################################################
 def mostrar_todos_vuelos(vuelos_chile):
     for vuelo in vuelos_chile:
         print(vuelo, ": ",vuelos_chile[vuelo])
 
 def filtrar_origen(vuelos_chile):
-    origen = input("Ingrese el origen\n")
+    origen = input("Ingrese el origen\n").capitalize()
     encontrado = False
 
     for vuelo in vuelos_chile:
@@ -114,7 +114,7 @@ def filtrar_origen(vuelos_chile):
         return False
 
 def filtrar_destino(vuelos_chile):
-    destino = input("Ingrese el destino\n")
+    destino = input("Ingrese el destino\n").capitalize()
     encontrado = False
 
     for vuelo in vuelos_chile:
@@ -127,8 +127,8 @@ def filtrar_destino(vuelos_chile):
         return False
 
 def filtrar_origen_destino(vuelos_chile):
-    origen = input("Ingrese el origen\n")
-    destino = input("Ingrese el destino\n")
+    origen = input("Ingrese el origen\n").capitalize()
+    destino = input("Ingrese el destino\n").capitalize()
     encontrado = False
 
     for vuelo in vuelos_chile:
@@ -158,6 +158,40 @@ def filtrar_precio(vuelos_chile,info_vuelos):
     for vuelo in vuelos_chile:
         if vuelo in nombre_vuelo:
             print(vuelo, ": ",vuelos_chile[vuelo])
+
+#Opcion2###########################################################################################################################################################
+
+def vuelo_encontrado(info_vuelos):
+    encontrado = False
+    vuelo_comprar = input("Inserte código de vuelo a comprar\n").upper()
+    for info in info_vuelos:
+        if vuelo_comprar in info_vuelos:
+            encontrado = True
+    if encontrado == True:
+        return vuelo_comprar
+    else:
+        return None
+
+def asientos_disponibles(info_vuelos):
+    vuelo = vuelo_encontrado(info_vuelos)
+    asiento_disp = info_vuelos[vuelo][2]
+    print(asiento_disp)
+
+#Opcion3###########################################################################################################################################################
+
+def comprar_pasaje(vuelos_chile,info_vuelos):
+    pasaje = []
+    vuelo_comprar = vuelo_encontrado(info_vuelos)
+    nombre_pasajero = input("Por favor, ingrese su nombre\n").capitalize()
+    rut = input("Por favor, ingrese su rut").upper()
+
+    asiento = info_vuelos[vuelo_comprar][2].pop(randint(0, len(info_vuelos[vuelo_comprar][2]) - 1))
+    pasaje.append({"Nombre":nombre_pasajero,"Rut":rut,"Asiento":asiento})
+    print(pasaje)
+    pasajes_comprados[vuelo_comprar] = pasaje
+    if vuelo_comprar == None:
+        print("Vuelo no encontrado")
+        return False
 
 while True:
     try:
@@ -189,11 +223,11 @@ while True:
             else:
                 print("Ingrese una opción válida")
     elif opcion == 2:
-        pass
+        asientos_disponibles(info_vuelos)
     elif opcion == 3:
-        pass
+        comprar_pasaje(vuelos_chile,info_vuelos)
     elif opcion == 4:
-        pass
+        print(pasajes_comprados)
     elif opcion == 5:
         print("Adios")
         break
