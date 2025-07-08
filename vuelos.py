@@ -127,7 +127,37 @@ def filtrar_destino(vuelos_chile):
         return False
 
 def filtrar_origen_destino(vuelos_chile):
-    pass
+    origen = input("Ingrese el origen\n")
+    destino = input("Ingrese el destino\n")
+    encontrado = False
+
+    for vuelo in vuelos_chile:
+        if origen == vuelos_chile[vuelo][0] and destino == vuelos_chile[vuelo][1]:
+            print(vuelo, ": ",vuelos_chile[vuelo])
+            encontrado = True
+
+    if encontrado == False:
+        print("No se encontraron vuelos\n")
+        return False
+
+def rango_precio(info_vuelos):
+    lista_info = []
+    rango_precio_inf = int(input("Seleccione el rango de precio inferior\n"))
+    rango_precio_sup = int(input("Seleccione el rango de precio superior\n"))
+    for info in info_vuelos:
+        if rango_precio_inf < info_vuelos[info][0] and rango_precio_sup > info_vuelos[info][0]:
+            lista_info.append(info)
+    return lista_info
+
+def filtrar_precio(vuelos_chile,info_vuelos):
+    nombre_vuelo = rango_precio(info_vuelos)
+    if len(nombre_vuelo) == 0:
+        print("No se encontraron vuelos en ese rango de precio\n")
+        return False
+    #print(nombre_vuelo)
+    for vuelo in vuelos_chile:
+        if vuelo in nombre_vuelo:
+            print(vuelo, ": ",vuelos_chile[vuelo])
 
 while True:
     try:
@@ -135,13 +165,15 @@ while True:
     except ValueError as error:
         print("Error: ",error)
         print("Se esperaba un entero")
+        opcion = 0.5
     if opcion == 1:
         while True:
             try:
-                opcion_filtro = int(input("Seleccione una opción de filtro:\n1. Ver todos los vuelos\n2. Ver vuelos por origen.\n3. Ver vuelos por destino\n4. Ver vuelos por origen - destino\n5. Volver al menú principal\n"))
+                opcion_filtro = int(input("Seleccione una opción de filtro:\n1. Ver todos los vuelos\n2. Ver vuelos por origen.\n3. Ver vuelos por destino\n4. Ver vuelos por origen - destino\n5. Ver vuelos por rango de precios\n6. Volver al menú principal\n"))
             except ValueError as error:
                 print("Error: ",error)
                 print("Se esperaba un entero")
+                opcion_filtro = 0.5
             if opcion_filtro == 1:
                 mostrar_todos_vuelos(vuelos_chile)
             elif opcion_filtro == 2:
@@ -151,6 +183,8 @@ while True:
             elif opcion_filtro == 4:
                 filtrar_origen_destino(vuelos_chile)
             elif opcion_filtro == 5:
+                filtrar_precio(vuelos_chile,info_vuelos)
+            elif opcion_filtro == 6:
                 break
             else:
                 print("Ingrese una opción válida")
@@ -165,13 +199,3 @@ while True:
         break
     else:
         print("Ingrese una opción válida")
-
-
-
-
-'''                print("")
-            print("")
-            print("")
-            print("3. ")
-            print("")
-            print("")'''
