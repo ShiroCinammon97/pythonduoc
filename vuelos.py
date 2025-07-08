@@ -113,10 +113,20 @@ def filtrar_origen(vuelos_chile):
         print("No se encontraron vuelos\n")
         return False
 
-def buscar_destino(vuelos_chile,info_vuelos):
-    pass
+def filtrar_destino(vuelos_chile):
+    destino = input("Ingrese el destino\n")
+    encontrado = False
 
-def buscar_precio(vuelos_chile,info_vuelos):
+    for vuelo in vuelos_chile:
+        if destino == vuelos_chile[vuelo][1]:
+            print(vuelo, ": ",vuelos_chile[vuelo])
+            encontrado = True
+
+    if encontrado == False:
+        print("No se encontraron vuelos\n")
+        return False
+
+def filtrar_origen_destino(vuelos_chile):
     pass
 
 while True:
@@ -126,8 +136,24 @@ while True:
         print("Error: ",error)
         print("Se esperaba un entero")
     if opcion == 1:
-        #mostrar_todos_vuelos(vuelos_chile)
-        filtrar_origen(vuelos_chile)
+        while True:
+            try:
+                opcion_filtro = int(input("Seleccione una opción de filtro:\n1. Ver todos los vuelos\n2. Ver vuelos por origen.\n3. Ver vuelos por destino\n4. Ver vuelos por origen - destino\n5. Volver al menú principal\n"))
+            except ValueError as error:
+                print("Error: ",error)
+                print("Se esperaba un entero")
+            if opcion_filtro == 1:
+                mostrar_todos_vuelos(vuelos_chile)
+            elif opcion_filtro == 2:
+                filtrar_origen(vuelos_chile)
+            elif opcion_filtro == 3:
+                filtrar_destino(vuelos_chile)
+            elif opcion_filtro == 4:
+                filtrar_origen_destino(vuelos_chile)
+            elif opcion_filtro == 5:
+                break
+            else:
+                print("Ingrese una opción válida")
     elif opcion == 2:
         pass
     elif opcion == 3:
@@ -143,9 +169,9 @@ while True:
 
 
 
-'''                print("Seleccione una opción de filtro:")
-            print("1. Ver todos los vuelos")
-            print("2. Ver vuelos por origen")
-            print("3. Ver vuelos por destino")
-            print("4. Ver vuelos por origen - destino")
-            print("5. Volver al menú principal")'''
+'''                print("")
+            print("")
+            print("")
+            print("3. ")
+            print("")
+            print("")'''
