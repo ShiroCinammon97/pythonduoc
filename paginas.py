@@ -1,5 +1,3 @@
-
-
 def pag(par_impar):
     if par_impar == 1:
         for x in range(lim_inf,lim_sup+1):
